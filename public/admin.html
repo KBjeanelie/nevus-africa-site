@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | NEVUS AFRICA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>NEVUS <span>AFRICA</span></h2>
+        <p>Dashboard</p>
+      </div>
+      <nav class="admin-nav">
+        <button class="nav-btn active" data-section="settings">🎨 Apparence</button>
+        <button class="nav-btn" data-section="sections">📝 Contenu</button>
+        <button class="nav-btn" data-section="messages">📧 Messages</button>
+        <button class="nav-btn" data-section="contacts">📍 Contacts</button>
+        <button class="nav-btn" data-section="danger">⚠️ Danger</button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" class="btn-secondary">Voir le site</a>
+        <button onclick="logout()" class="btn-logout">Déconnexion</button>
+      </div>
+    </aside>
+
+    <main class="admin-content">
+      <!-- Section Paramètres -->
+      <section id="settings" class="admin-section active">
+        <div class="header">
+          <h1>Personnalisation</h1>
+          <p>Ajustez les couleurs de la marque.</p>
+        </div>
+        <div class="card settings-grid" id="settings-form"></div>
+        <button class="btn-primary" onclick="saveSettings()">Enregistrer les modifications</button>
+      </section>
+
+      <!-- Section Contenu -->
+      <section id="sections" class="admin-section">
+        <div class="header">
+          <h1>Contenu des Sections</h1>
+          <p>Gérez les textes affichés sur le site.</p>
+        </div>
+        <div id="sections-list" class="list-container"></div>
+      </section>
+
+      <!-- Section Messages -->
+      <section id="messages" class="admin-section">
+        <div class="header">
+          <h1>Messages Reçus</h1>
+          <p>Suivi des demandes de contact.</p>
+        </div>
+        <div id="messages-list" class="list-container"></div>
+      </section>
+
+      <!-- Section Contacts -->
+      <section id="contacts" class="admin-section">
+        <div class="header">
+          <h1>Coordonnées</h1>
+          <p>Mise à jour des informations de contact.</p>
+        </div>
+        <div id="contacts-list" class="card list-container"></div>
+      </section>
+
+      <!-- Section Danger -->
+      <section id="danger" class="admin-section">
+        <div class="header">
+          <h1>Zone de Danger</h1>
+          <p>Actions irréversibles.</p>
+        </div>
+        <div class="card danger-card">
+          <h3>Réinitialiser le site</h3>
+          <p>Cette action supprimera tous les messages et remettra les contenus et couleurs à leur état d'origine.</p>
+          <button class="btn-danger" onclick="confirmReset()">Réinitialiser tout le site</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
