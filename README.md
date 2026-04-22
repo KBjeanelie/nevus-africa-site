@@ -1,186 +1,76 @@
-# 🌍 Site NEVUS AFRICA
+# 🌍 Site NEVUS AFRICA (Version Cloud)
 
-Un site vitrine complet pour l'ONG NEVUS AFRICA avec un backoffice d'administration. Entièrement construit en JavaScript (Node.js) avec Express, SQLite et une interface moderne.
+Un site vitrine premium pour l'ONG NEVUS AFRICA avec un backoffice d'administration complet. Cette version est optimisée pour un hébergement sur **Netlify** avec une base de données **Supabase**.
 
 ## ✨ Fonctionnalités
 
-### 🌐 Site Vitrine
-- Page d'accueil professionnelle avec sections animées
-- Responsive design (mobile, tablette, desktop)
-- Informations sur l'ONG, missions et programmes
-- Formulaire de contact
-- Thème personnalisable
+### 🌐 Site Vitrine Premium
+- Design haute performance, professionnel et humain.
+- Palette de couleurs institutionnelle (Bleu Marine & Orange).
+- Responsive design (mobile, tablette, desktop).
+- Formulaire de contact intégré avec envoi d'emails.
 
 ### 🎛️ Backoffice d'Administration
-- **Gestion des couleurs** : Personnalisez le design en temps réel
-  - Couleur primaire, secondaire, accent
-  - Couleur du texte et des boutons
-- **Gestion des sections** : Modifiez le contenu textuel
-  - Modifier, ajouter, supprimer des sections
-- **Gestion des contacts** : Mettez à jour les informations de contact
-  - Email, téléphone, adresse
+- **Sécurisé** : Authentification requise pour accéder aux réglages.
+- **Gestion des couleurs** : Personnalisez le thème (couleurs CSS variables).
+- **Gestion du contenu** : Modifiez les textes des sections en temps réel.
+- **Suivi des messages** : Lisez et gérez les demandes de contact reçues.
+- **Réinitialisation** : Option pour remettre le site à son état d'origine.
 
-## 🚀 Démarrage rapide
+## 🚀 Architecture Technique
 
-### Prérequis
-- Node.js v14+ 
-- npm ou yarn
-
-### Installation
-
-```bash
-# Cloner le repo ou accéder au dossier
-cd nevus-africa-site
-
-# Installer les dépendances
-npm install
-
-# Démarrer le serveur
-npm start
-```
-
-Le serveur démarre sur `http://localhost:3000`
-
-### Accès
-- **Site public** : http://localhost:3000
-- **Backoffice** : http://localhost:3000/admin
+- **Frontend** : HTML5, CSS3 (Vanilla), JavaScript (ES6+).
+- **Backend** : Node.js (Express) fonctionnant en **Netlify Functions**.
+- **Base de données** : **Supabase** (PostgreSQL) pour une persistance cloud fiable.
+- **Email** : Nodemailer intégré pour les notifications.
 
 ## 📁 Structure du Projet
 
 ```
 nevus-africa-site/
+├── functions/
+│   └── api.js              # Point d'entrée Netlify Serverless
 ├── src/
 │   ├── api/
-│   │   └── routes.js          # Routes API
+│   │   └── routes.js       # Logique des routes API
 │   └── db/
-│       └── database.js         # Configuration SQLite
+│       └── supabase.js     # Client et couche de données Supabase
 ├── public/
-│   ├── index.html              # Page vitrine
-│   ├── admin.html              # Page backoffice
-│   ├── css/
-│   │   ├── style.css           # Styles vitrine
-│   │   └── admin.css           # Styles backoffice
-│   └── js/
-│       ├── app.js              # JavaScript vitrine
-│       └── admin.js            # JavaScript backoffice
-├── data/
-│   └── nevus.db                # Base de données SQLite (créée auto)
-├── index.js                    # Serveur principal
-├── package.json
-└── .env                        # Variables d'environnement
+│   ├── index.html          # Page vitrine
+│   ├── admin.html          # Dashboard d'administration
+│   ├── login.html          # Page de connexion sécurisée
+│   └── css/                # Styles (Premium Design)
+├── netlify.toml            # Configuration du déploiement Netlify
+├── supabase_schema.sql     # Script d'initialisation de la DB
+└── .env                    # Configuration (voir .env.example)
 ```
 
-## 🔧 Configuration
+## 🔧 Installation & Déploiement
 
-### Variables d'environnement (.env)
+### 1. Configuration de Supabase
+1. Créez un projet sur [Supabase](https://supabase.com/).
+2. Exécutez le script [supabase_schema.sql](./supabase_schema.sql) dans l'éditeur SQL de votre projet.
+3. Notez votre `SUPABASE_URL` et votre `SUPABASE_ANON_KEY`.
+
+### 2. Déploiement sur Netlify
+1. Connectez votre dépôt GitHub à Netlify.
+2. Netlify détectera automatiquement le fichier `netlify.toml`.
+3. Ajoutez les variables d'environnement suivantes dans le dashboard Netlify :
+   - `SUPABASE_URL`
+   - `SUPABASE_ANON_KEY`
+   - `SESSION_SECRET` (une clé aléatoire)
+   - `EMAIL_USER` / `EMAIL_PASS` (pour les notifications)
+
+### 3. Développement Local
+```bash
+npm install
+# Créez votre fichier .env basé sur .env.example
+npm start
 ```
-PORT=3000
-NODE_ENV=development
-```
 
-## 📚 API Endpoints
-
-### Paramètres du site
-- `GET /api/settings` - Obtenir tous les paramètres
-- `PUT /api/settings/:key` - Mettre à jour un paramètre
-
-### Sections
-- `GET /api/sections` - Obtenir toutes les sections
-- `GET /api/sections/:id` - Obtenir une section
-- `POST /api/sections` - Créer une section
-- `PUT /api/sections/:id` - Mettre à jour une section
-- `DELETE /api/sections/:id` - Supprimer une section
-
-### Contacts
-- `GET /api/contacts` - Obtenir tous les contacts
-- `PUT /api/contacts/:type` - Mettre à jour un contact
-- `POST /api/contacts` - Ajouter un contact
-
-## 🎨 Personnalisation
-
-### Modifier les couleurs
-1. Accédez au backoffice : http://localhost:3000/admin
-2. Cliquez sur "🎨 Paramètres"
-3. Changez les couleurs avec les sélecteurs de couleur
-4. Cliquez "💾 Enregistrer les couleurs"
-
-### Modifier le contenu
-1. Accédez au backoffice
-2. Cliquez sur "📝 Sections"
-3. Modifiez le texte directement dans les textarea
-4. Cliquez "💾 Enregistrer"
-
-### Mettre à jour les contacts
-1. Accédez au backoffice
-2. Cliquez sur "📧 Contacts"
-3. Modifiez email, téléphone et adresse
-4. Cliquez "Enregistrer" pour chaque champ
-
-## 🌐 Déploiement
-
-### Sur Render.com (Recommandé)
-
-1. **Créer un compte Render** : https://render.com
-
-2. **Connecter votre repo GitHub**
-
-3. **Créer un nouveau Web Service**
-   - Source : GitHub (repo)
-   - Runtime : Node
-   - Build command : `npm install`
-   - Start command : `npm start`
-
-4. **Variables d'environnement**
-   ```
-   PORT=3000
-   NODE_ENV=production
-   ```
-
-5. **Déployer**
-
-### Sur Railway.app
-
-1. **Créer un compte Railway** : https://railway.app
-
-2. **Connecter GitHub**
-
-3. **Créer un nouveau projet**
-
-4. **Sélectionner le repo**
-
-5. **Railway détectera automatiquement Node.js**
-
-6. **Ajouter les variables d'environnement**
-
-7. **Déployer**
-
-### Sur Netlify (Serverless Functions)
-
-Netlify est principalement pour du statique. Pour une app Node.js complète, nous recommandons Render.com ou Railway.app qui offrent une meilleure support pour Express + SQLite.
-
-## 📦 Dépendances
-
-- **express** - Framework web
-- **sqlite3** - Base de données
-- **cors** - Cross-Origin Resource Sharing
-- **body-parser** - Parsing des requêtes
-- **dotenv** - Gestion des variables d'environnement
-
-## 🔒 Sécurité
-
-- Entrées validées et échappées
-- Requêtes paramétrées pour prévenir les injections SQL
-- CORS configuré
-- Production ready
-
-## 📝 Licence
-
-MIT - Libre d'utilisation
-
-## 👥 Support
-
-Pour toute question ou problème, contactez : contact@nevusafrica.org
+## 🔐 Accès Admin par défaut
+- **Utilisateur** : `admin`
+- **Mot de passe** : `root@2020`
 
 ---
-
 **Développé pour l'ONG NEVUS AFRICA** 🌍❤️

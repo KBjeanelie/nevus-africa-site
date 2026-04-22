@@ -1,0 +1,18 @@
+[build]
+  publish = "public"
+  functions = "functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/.netlify/functions/api/admin"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/.netlify/functions/api/login"
+  status = 200
