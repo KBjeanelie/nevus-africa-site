@@ -26,7 +26,16 @@ app.use(session({
 
 // API Routes
 app.use('/.netlify/functions/api', apiRoutes);
-app.use('/api', apiRoutes); // For local testing and redirects
+app.use('/api', apiRoutes);
+
+// Gestion d'erreur globale pour éviter le crash 502
+app.use((err, req, res, next) => {
+  console.error('🔥 Erreur Backend:', err.stack);
+  res.status(500).json({ 
+    error: 'Erreur Interne du Serveur',
+    message: err.message 
+  });
+});
 
 // Export handler for Netlify
 module.exports.handler = serverless(app);

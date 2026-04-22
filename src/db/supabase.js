@@ -5,15 +5,22 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  console.warn('⚠️ Supabase credentials missing. Use .env to provide them.');
+  console.error('❌ ERREUR: SUPABASE_URL ou SUPABASE_ANON_KEY manquant dans les variables d environnement.');
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = (!supabaseUrl || !supabaseKey) 
+  ? null 
+  : createClient(supabaseUrl, supabaseKey);
 
 // Wrapper functions to provide a clean API for the database layer
 const db = {
+  async checkConfig() {
+    if (!supabase) throw new Error('Configuration Supabase manquante');
+  },
+
   // Obtenir les paramètres
   async getSettings() {
+    await this.checkConfig();
     const { data, error } = await supabase.from('site_settings').select('key, value');
     if (error) throw error;
     const settingsObj = {};
@@ -33,6 +40,7 @@ const db = {
 
   // Obtenir les sections
   async getSections() {
+    await this.checkConfig();
     const { data, error } = await supabase.from('sections').select('*').order('order_index');
     if (error) throw error;
     return data;
@@ -50,6 +58,7 @@ const db = {
 
   // Obtenir les contacts
   async getContacts() {
+    await this.checkConfig();
     const { data, error } = await supabase.from('contact_info').select('type, value');
     if (error) throw error;
     const contactsObj = {};
@@ -75,6 +84,7 @@ const db = {
   },
 
   async getMessages() {
+    await this.checkConfig();
     const { data, error } = await supabase.from('messages').select('*').order('created_at', { ascending: false });
     if (error) throw error;
     return data;
