@@ -74,5 +74,5 @@ ON CONFLICT (type) DO NOTHING;
 -- Création de l'utilisateur admin par défaut
 -- admin / root@2020
 INSERT INTO users (username, password) 
-VALUES ('admin', '$2b$10$7R9rG6y1v6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6X6')
+VALUES ('admin', '$2b$10$pFQj8br3PSub477kimFp8uwXOzFJag18vKieaiNuiMajUNPjo4oCW')
 ON CONFLICT (username) DO NOTHING;
