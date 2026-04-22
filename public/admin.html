@@ -8,6 +8,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/admin.css">
+  <script>
+    // Protection de la page au chargement
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/check-auth');
+        const data = await res.json();
+        if (!data.authenticated) {
+          window.location.href = '/login.html';
+        }
+      } catch (e) {
+        window.location.href = '/login.html';
+      }
+    }
+    checkAuth();
+  </script>
 </head>
 <body>
   <div class="admin-container">

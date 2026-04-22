@@ -18,6 +18,14 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // AUTH
+router.get('/check-auth', (req, res) => {
+  if (req.session.userId) {
+    res.json({ authenticated: true });
+  } else {
+    res.json({ authenticated: false });
+  }
+});
+
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {

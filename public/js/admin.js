@@ -137,7 +137,14 @@ async function loadContacts() {
   const contacts = await fetch('/api/contacts').then(r => r.json());
   const container = document.getElementById('contacts-list');
   
-  container.innerHTML = Object.entries(contacts).map(([type, value]) => `
+  // Si vide, on met des valeurs par défaut pour permettre la création
+  const data = (Object.keys(contacts).length > 0) ? contacts : {
+    email: '',
+    phone: '',
+    address: ''
+  };
+
+  container.innerHTML = Object.entries(data).map(([type, value]) => `
     <div class="field" style="margin-bottom: 1.5rem;">
       <label style="text-transform: capitalize;">${type}</label>
       <div style="display: flex; gap: 1rem;">
