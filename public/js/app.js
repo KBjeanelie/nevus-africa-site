@@ -89,7 +89,7 @@ function renderMissions(section) {
       <div class="missions-grid">
         ${missionsData.map((mission, index) => `
           <div class="mission-card" style="animation: fadeInUp 0.8s ease ${index * 0.1}s both;">
-            <div style="background: rgba(211, 84, 0, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.5rem; color: var(--accent-color); font-weight: 700;">${index + 1}</div>
+            <div style="background: rgba(59, 130, 246, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.5rem; color: var(--accent-color); font-weight: 700;">${index + 1}</div>
             <h3>${mission.title}</h3>
             <p>${mission.desc}</p>
           </div>
@@ -251,7 +251,7 @@ async function renderNavbar() {
   const navbar = document.getElementById('navbar');
   navbar.innerHTML = `
     <div class="container">
-      <h1 style="color: var(--primary-color); font-weight: 800; font-family: 'Outfit';">NEVUS <span style="color: var(--accent-color);">AFRICA</span></h1>
+      <h1 style="color: var(--white); font-weight: 800; font-family: 'Outfit';">NEVUS <span style="color: var(--accent-color);">AFRICA</span></h1>
       <div class="mobile-menu-btn" id="mobile-menu-btn">☰</div>
       <nav class="nav-links" id="nav-links">
         <a href="#hero-section">Accueil</a>
@@ -274,9 +274,9 @@ async function renderNavbar() {
     navLinks.style.top = '100%';
     navLinks.style.left = '0';
     navLinks.style.width = '100%';
-    navLinks.style.background = 'white';
+    navLinks.style.background = 'var(--primary-color)';
     navLinks.style.padding = '1.5rem';
-    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
     navLinks.style.zIndex = '999';
   });
 

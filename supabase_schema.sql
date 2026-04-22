@@ -50,12 +50,12 @@ CREATE TABLE users (
 
 -- Données par défaut (Initialisation)
 INSERT INTO site_settings (key, value) VALUES 
-('primary_color', '#1A2B3C'),
-('secondary_color', '#2C3E50'),
-('accent_color', '#D35400'),
-('text_color', '#2C3E50'),
-('button_color', '#D35400'),
-('button_hover_color', '#A04000')
+('primary_color', '#000000'),
+('secondary_color', '#0F172A'),
+('accent_color', '#3B82F6'),
+('text_color', '#FFFFFF'),
+('button_color', '#3B82F6'),
+('button_hover_color', '#2563EB')
 ON CONFLICT (key) DO NOTHING;
 
 INSERT INTO sections (name, title, content, order_index) VALUES 
