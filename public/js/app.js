@@ -252,7 +252,8 @@ async function renderNavbar() {
   navbar.innerHTML = `
     <div class="container">
       <h1 style="color: var(--primary-color); font-weight: 800; font-family: 'Outfit';">NEVUS <span style="color: var(--accent-color);">AFRICA</span></h1>
-      <nav>
+      <div class="mobile-menu-btn" id="mobile-menu-btn">☰</div>
+      <nav class="nav-links" id="nav-links">
         <a href="#hero-section">Accueil</a>
         <a href="#about-section">À propos</a>
         <a href="#missions-section">Missions</a>
@@ -261,6 +262,32 @@ async function renderNavbar() {
       </nav>
     </div>
   `;
+
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
+
+  menuBtn.addEventListener('click', () => {
+    const isVisible = navLinks.style.display === 'flex';
+    navLinks.style.display = isVisible ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '100%';
+    navLinks.style.left = '0';
+    navLinks.style.width = '100%';
+    navLinks.style.background = 'white';
+    navLinks.style.padding = '1.5rem';
+    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+    navLinks.style.zIndex = '999';
+  });
+
+  // Fermer le menu au clic sur un lien
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1024) {
+        navLinks.style.display = 'none';
+      }
+    });
+  });
 }
 
 // Soumettre le formulaire de contact

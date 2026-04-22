@@ -16,12 +16,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'nevus-africa-secret',
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax'
-  }
+    secure: true,
+    sameSite: 'none', // Nécessaire pour les domaines Netlify
+    maxAge: 24 * 60 * 60 * 1000 // 24 heures
+  },
+  proxy: true // Nécessaire derrière le reverse proxy de Netlify
 }));
 
 // API Routes
